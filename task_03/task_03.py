@@ -9,6 +9,27 @@ def take_news():
     text_news = re.findall('meta name=\"description\" content=\"(.+?)\"', news)
     return text_news
 
-def token():
-    with open('token.txt', 'r') as f:
+
+def take_token(path):
+    with open(path) as f:
         return f.readline()
+
+
+def send_telegram(text: str, token: str):
+    url = "https://api.telegram.org/bot"
+    channel_id = -1001625716305
+    url += token
+    method = url + "/sendMessage"
+
+    r = requests.post(method, data={
+        "chat_id": channel_id,
+        "text": text
+    })
+
+    if r.status_code != 200:
+        raise Exception("post_text error")
+
+
+if __name__ == '__main__':
+    token = take_token('token.txt')
+    send_telegram(take_news(), token)
