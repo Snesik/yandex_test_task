@@ -15,7 +15,7 @@ def take_token(path):
         return f.readline()
 
 
-def send_telegram(text: str, token: str):
+def send_telegram(text):
     url = "https://api.telegram.org/bot"
     channel_id = -1001625716305
     url += token
@@ -32,4 +32,4 @@ def send_telegram(text: str, token: str):
 
 if __name__ == '__main__':
     token = take_token('token.txt')
-    send_telegram(take_news(), token)
+    send_telegram(take_news())
