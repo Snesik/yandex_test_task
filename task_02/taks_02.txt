@@ -15,6 +15,12 @@ it.priority
 }
 if (request == null)
 return
+
+********
+if request.assignee != login: \\Дополнительная проверка логина сотрудника поддержки
+return
+********
+
 request.state = 'inprogress'
 request.assignee = login
 request.version += 1
